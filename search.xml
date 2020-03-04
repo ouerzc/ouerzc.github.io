@@ -9,6 +9,8 @@
 * 值 1 代表新鲜橘子；
 * 值 2 代表腐烂的橘子。</code></pre><p>每分钟，任何与腐烂的橘子（在 4 个正方向上）相邻的新鲜橘子都会腐烂。</p>
 <p>返回直到单元格中没有新鲜橘子为止所必须经过的最小分钟数。如果不可能，返回 -1。</p>
+<a id="more"></a>
+
 <h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a><strong>思考</strong></h1><ol>
 <li>解法:<br>首先使用队列将所有腐烂橘子存起来<br>然后广度搜索, 每次搜索外一层, 有相邻新鲜橘子记录起来并推入腐烂橘子队列</li>
 </ol>
@@ -43,15 +45,18 @@
 <li>Object</li>
 </ul>
 <h1 id="原始值"><a href="#原始值" class="headerlink" title="原始值"></a>原始值</h1><p>除 Object 以外的所有类型都是不可变的</p>
-<h2 id="布尔类型"><a href="#布尔类型" class="headerlink" title="布尔类型"></a>布尔类型</h2><p>布尔表示一个逻辑实体，可以有两个值：<code>true</code> 和 <code>false</code></p>
-<h2 id="Null-类型"><a href="#Null-类型" class="headerlink" title="Null 类型"></a>Null 类型</h2><p>Null 类型只有一个值： null</p>
-<h2 id="Undefined-类型"><a href="#Undefined-类型" class="headerlink" title="Undefined 类型"></a>Undefined 类型</h2><p>一个没有被赋值的变量会有个默认值 <code>undefined</code></p>
+<h2 id="字符串类型"><a href="#字符串类型" class="headerlink" title="字符串类型"></a>字符串类型</h2><p>JavaScript的字符串类型用于表示文本数据。它是一组16位的无符号整数值的“元素”</p>
 <h2 id="数字类型"><a href="#数字类型" class="headerlink" title="数字类型"></a>数字类型</h2><p>根据 ECMAScript 标准，JavaScript 中只有一种数字类型：基于 IEEE 754 标准的双精度 64 位二进制格式的值（-(253 -1) 到 253 -1）</p>
 <p>还有一些带符号的值：<code>+Infinity</code>，<code>-Infinity</code> 和 <code>NaN</code>(非数值，Not-a-Number)</p>
 <p>要检查值是否大于或小于 <code>+/-Infinity</code>, 你可以使用常量 <code>Number.MAX_VALUE</code> 和 <code>Number.MIN_VALUE</code></p>
 <p>在 ECMAScript 6 中，你也可以通过 <code>Number.isSafeInteger()</code> 方法还有 <code>Number.MAX_SAFE_INTEGER</code> 和 <code>Number.MIN_SAFE_INTEGER</code> 来检查值是否在双精度浮点数的取值范围内</p>
+<a id="more"></a>
+
+
+<h2 id="布尔类型"><a href="#布尔类型" class="headerlink" title="布尔类型"></a>布尔类型</h2><p>布尔表示一个逻辑实体，可以有两个值：<code>true</code> 和 <code>false</code></p>
+<h2 id="Null-类型"><a href="#Null-类型" class="headerlink" title="Null 类型"></a>Null 类型</h2><p>Null 类型只有一个值： null</p>
+<h2 id="Undefined-类型"><a href="#Undefined-类型" class="headerlink" title="Undefined 类型"></a>Undefined 类型</h2><p>一个没有被赋值的变量会有个默认值 <code>undefined</code></p>
 <h2 id="BigInt-类型"><a href="#BigInt-类型" class="headerlink" title="BigInt 类型"></a>BigInt 类型</h2><p>BigInt类型是 JavaScript 中的一个基础的数值类型，可以用任意精度表示整数</p>
-<h2 id="字符串类型"><a href="#字符串类型" class="headerlink" title="字符串类型"></a>字符串类型</h2><p>JavaScript的字符串类型用于表示文本数据。它是一组16位的无符号整数值的“元素”</p>
 <h2 id="符号类型"><a href="#符号类型" class="headerlink" title="符号类型"></a>符号类型</h2><p>符号类型是唯一的并且是不可修改的, 并且也可以用来作为Object的key的值</p>
 <h1 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h1><h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><p>属性使用键来标识，它的键值可以是一个字符串或者符号值（Symbol）</p>
 <p>ECMAScript定义的对象中有两种属性：数据属性和访问器属性。</p>
