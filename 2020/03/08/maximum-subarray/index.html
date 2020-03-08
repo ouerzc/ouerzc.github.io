@@ -20,23 +20,26 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="题目腐烂的橘子 描述在给定的网格中，每个单元格可以有以下三个值之一：  值 0 代表空单元格； 值 1 代表新鲜橘子； 值 2 代表腐烂的橘子。  每分钟，任何与腐烂的橘子（在 4 个正方向上）相邻的新鲜橘子都会腐烂。 返回直到单元格中没有新鲜橘子为止所必须经过的最小分钟数。如果不可能，返回 -1。">
+  <meta name="description" content="题目最大子序和 描述给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="腐烂的橘子 - LeetCode">
-<meta property="og:url" content="http://yoursite.com/2020/03/03/rotting-oranges/index.html">
+<meta property="og:title" content="最大子序和 - LeetCode">
+<meta property="og:url" content="http://yoursite.com/2020/03/08/maximum-subarray/index.html">
 <meta property="og:site_name" content="HwaelCode">
-<meta property="og:description" content="题目腐烂的橘子 描述在给定的网格中，每个单元格可以有以下三个值之一：  值 0 代表空单元格； 值 1 代表新鲜橘子； 值 2 代表腐烂的橘子。  每分钟，任何与腐烂的橘子（在 4 个正方向上）相邻的新鲜橘子都会腐烂。 返回直到单元格中没有新鲜橘子为止所必须经过的最小分钟数。如果不可能，返回 -1。">
+<meta property="og:description" content="题目最大子序和 描述给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-03-03T09:47:06.000Z">
-<meta property="article:modified_time" content="2020-03-05T05:44:00.041Z">
+<meta property="article:published_time" content="2020-03-08T15:58:33.000Z">
+<meta property="article:modified_time" content="2020-03-08T16:06:12.391Z">
 <meta property="article:author" content="Hwael">
 <meta property="article:tag" content="JavaScript">
 <meta property="article:tag" content="LeetCode">
 <meta property="article:tag" content="算法">
-<meta property="article:tag" content="广度优先搜索(BFS)">
+<meta property="article:tag" content="动态规划">
+<meta property="article:tag" content="贪心算法">
+<meta property="article:tag" content="分治法">
+<meta property="article:tag" content="Kadane 算法">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2020/03/03/rotting-oranges/">
+<link rel="canonical" href="http://yoursite.com/2020/03/08/maximum-subarray/">
 
 
 <script id="page-configurations">
@@ -48,7 +51,7 @@
   };
 </script>
 
-  <title>腐烂的橘子 - LeetCode | HwaelCode</title>
+  <title>最大子序和 - LeetCode | HwaelCode</title>
   
 
 
@@ -202,7 +205,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/03/rotting-oranges/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/08/maximum-subarray/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpeg">
@@ -215,7 +218,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          腐烂的橘子 - LeetCode
+          最大子序和 - LeetCode
         </h1>
 
         <div class="post-meta">
@@ -225,14 +228,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-03-03 17:47:06" itemprop="dateCreated datePublished" datetime="2020-03-03T17:47:06+08:00">2020-03-03</time>
+              <time title="创建时间：2020-03-08 23:58:33" itemprop="dateCreated datePublished" datetime="2020-03-08T23:58:33+08:00">2020-03-08</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-05 13:44:00" itemprop="dateModified" datetime="2020-03-05T13:44:00+08:00">2020-03-05</time>
+                <time title="修改时间：2020-03-09 00:06:12" itemprop="dateModified" datetime="2020-03-09T00:06:12+08:00">2020-03-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -245,7 +248,7 @@
             </span>
 
           
-            <span id="/2020/03/03/rotting-oranges/" class="post-meta-item leancloud_visitors" data-flag-title="腐烂的橘子 - LeetCode" title="阅读次数">
+            <span id="/2020/03/08/maximum-subarray/" class="post-meta-item leancloud_visitors" data-flag-title="最大子序和 - LeetCode" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -260,8 +263,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/03/03/rotting-oranges/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/03/03/rotting-oranges/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/03/08/maximum-subarray/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/03/08/maximum-subarray/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -276,29 +279,55 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>腐烂的橘子</p>
-<h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><p>在给定的网格中，每个单元格可以有以下三个值之一：</p>
-<ul>
-<li>值 0 代表空单元格；</li>
-<li>值 1 代表新鲜橘子；</li>
-<li>值 2 代表腐烂的橘子。</li>
-</ul>
-<p>每分钟，任何与腐烂的橘子（在 4 个正方向上）相邻的新鲜橘子都会腐烂。</p>
-<p>返回直到单元格中没有新鲜橘子为止所必须经过的最小分钟数。如果不可能，返回 -1。</p>
+        <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>最大子序和</p>
+<h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><p>给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
 <a id="more"></a>
+<p>示例:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: [-2,1,-3,4,-1,2,1,-5,4],</span><br><span class="line">输出: 6</span><br><span class="line">解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。</span><br></pre></td></tr></table></figure>
 
+<p>进阶:</p>
+<p>如果你已经实现复杂度为 O(n) 的解法，尝试使用更为精妙的分治法求解。</p>
 <h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a><strong>思考</strong></h1><ol>
-<li>解法一:<ol>
-<li>第一遍计算出所有的橘子数量并且找出腐烂的橘子放入队列, 作为第 0 层的结点</li>
-<li>然后广度优先搜索, 每次搜索外一层, 有相邻新鲜橘子记录起来并推入腐烂橘子队列</li>
-<li>最后比较所有的橘子与腐烂的橘子的数量, 返回结果</li>
-</ol>
+<li>动态规划法：</li>
+<li>分治法：<ul>
+<li>定义基本问题。</li>
+<li>将问题分解为子问题并递归地解决它们。</li>
+<li>合并子问题的解以获得原始问题的解。</li>
+</ul>
 </li>
 </ol>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[][]&#125;</span> <span class="variable">grid</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> orangesRotting = <span class="function"><span class="keyword">function</span>(<span class="params">grid</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(!grid) <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> r = grid.length</span><br><span class="line">    <span class="keyword">let</span> c = grid[<span class="number">0</span>].length</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> orangesCount = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> badCount = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> bad = [];</span><br><span class="line">    <span class="keyword">let</span> day = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> coor = [[<span class="number">-1</span>, <span class="number">0</span>], [<span class="number">0</span>, <span class="number">1</span>], [<span class="number">1</span>, <span class="number">0</span>], [<span class="number">0</span>, <span class="number">-1</span>]]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; r; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; c; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(grid[i][j] &gt; <span class="number">0</span>)&#123;</span><br><span class="line">                orangesCount += <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span>(grid[i][j] === <span class="number">2</span>)&#123;</span><br><span class="line">                    bad.push([i, j])</span><br><span class="line">                    badCount += <span class="number">1</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (bad.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> hasBad = <span class="literal">false</span></span><br><span class="line">        <span class="keyword">let</span> badLen = bad.length</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; badLen; i++) &#123;</span><br><span class="line">            <span class="keyword">let</span> badRC = bad.splice(<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; <span class="number">4</span>; j++) &#123;</span><br><span class="line">                <span class="keyword">let</span> dr = badRC[<span class="number">0</span>][<span class="number">0</span>] + coor[j][<span class="number">0</span>]</span><br><span class="line">                <span class="keyword">let</span> dc = badRC[<span class="number">0</span>][<span class="number">1</span>] + coor[j][<span class="number">1</span>]</span><br><span class="line">                <span class="keyword">if</span>(dr &gt;=<span class="number">0</span> &amp;&amp; dc &gt;=<span class="number">0</span> &amp;&amp; grid[dr] &amp;&amp; grid[dr][dc] + <span class="number">1</span> === <span class="number">2</span>)&#123;</span><br><span class="line">                    grid[dr][dc] = <span class="number">2</span></span><br><span class="line">                    bad.push([dr, dc])</span><br><span class="line">                    badCount += <span class="number">1</span></span><br><span class="line">                    hasBad = <span class="literal">true</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        hasBad &amp;&amp; day ++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> orangesCount &gt; badCount ? <span class="number">-1</span> : day</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><ol>
+<li>解法一：<br>动态规划法：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> maxSubArray = <span class="function"><span class="keyword">function</span>(<span class="params">nums</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">Array</span>.isArray(nums)) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (nums.length === <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> maxSum = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[i - <span class="number">1</span>] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            nums[i] += nums[i - <span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        maxSum = <span class="built_in">Math</span>.max(maxSum, nums[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxSum;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
+</li>
+</ol>
+<p>复杂度分析：</p>
+<ul>
+<li>时间复杂度：<code>O(N)</code> 。只遍历了一次数组。</li>
+<li>空间复杂度：<code>O(1)</code>，使用了常数的空间。</li>
+</ul>
+<p>执行结果：</p>
+<ul>
+<li>执行用时: 64 ms, 在所有 JavaScript 提交中击败了 90.83% 的用户</li>
+<li>内存消耗: 35.2 MB, 在所有 JavaScript 提交中击败了 68.95% 的用户</li>
+</ul>
+<ol start="2">
+<li>解法二：<br>分治法：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> maxSubArray = <span class="function"><span class="keyword">function</span>(<span class="params">nums</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> maxSubArrayDivideWithBorder(nums, <span class="number">0</span>, nums.length - <span class="number">1</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> maxSubArrayDivideWithBorder = <span class="function"><span class="keyword">function</span>(<span class="params">nums, start, end</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (start === end) <span class="keyword">return</span> nums[start];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 计算中间值</span></span><br><span class="line">    <span class="keyword">const</span> center = <span class="built_in">Math</span>.floor((start + end) / <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> maxLeft = maxSubArrayDivideWithBorder(nums, start, center);</span><br><span class="line">    <span class="keyword">const</span> maxRight = maxSubArrayDivideWithBorder(nums, center + <span class="number">1</span>, end);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 计算横跨两个子序列的最大值</span></span><br><span class="line">    <span class="comment">// 计算包含左侧子序列最后一个元素的子序列最大值</span></span><br><span class="line">    <span class="keyword">let</span> maxLeftCross = -<span class="literal">Infinity</span>;</span><br><span class="line">    <span class="keyword">let</span> sumLeftCross = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = center; i &gt;= start; i--) &#123;</span><br><span class="line">        sumLeftCross += nums[i];</span><br><span class="line">        maxLeftCross = <span class="built_in">Math</span>.max(sumLeftCross, maxLeftCross);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> maxRightCross = -<span class="literal">Infinity</span>;</span><br><span class="line">    <span class="keyword">let</span> sumRightCross = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = center + <span class="number">1</span>; i &lt;= end; i++) &#123;</span><br><span class="line">        sumRightCross += nums[i];</span><br><span class="line">        maxRightCross = <span class="built_in">Math</span>.max(sumRightCross, maxRightCross);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> maxCross = maxLeftCross + maxRightCross;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.max(maxCross, maxLeft, maxRight);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>复杂度分析：</p>
+<ul>
+<li>时间复杂度：<code>O(NlogN)</code> 。</li>
+<li>空间复杂度：<code>O(logN)</code>，递归时栈使用的空间。</li>
+</ul>
+<p>执行结果：</p>
+<ul>
+<li>执行用时: 72 ms, 在所有 JavaScript 提交中击败了 62.19% 的用户</li>
+<li>内存消耗: 35.3 MB, 在所有 JavaScript 提交中击败了 59.41% 的用户</li>
+</ul>
 <h1 id="难度"><a href="#难度" class="headerlink" title="难度"></a>难度</h1><p>简单</p>
-<h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/rotting-oranges" target="_blank" rel="noopener">腐烂的橘子 - LeetCode</a></p>
+<h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/maximum-subarray" target="_blank" rel="noopener">最大子序和 - LeetCode</a></p>
 
     </div>
 
@@ -311,7 +340,10 @@
               <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
               <a href="/tags/LeetCode/" rel="tag"># LeetCode</a>
               <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
-              <a href="/tags/%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-BFS/" rel="tag"># 广度优先搜索(BFS)</a>
+              <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag"># 动态规划</a>
+              <a href="/tags/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" rel="tag"># 贪心算法</a>
+              <a href="/tags/%E5%88%86%E6%B2%BB%E6%B3%95/" rel="tag"># 分治法</a>
+              <a href="/tags/Kadane-%E7%AE%97%E6%B3%95/" rel="tag"># Kadane 算法</a>
           </div>
 
         
@@ -320,13 +352,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/03/01/javascript-data-type/" rel="prev" title="JavaScript 数据类型整理">
-      <i class="fa fa-chevron-left"></i> JavaScript 数据类型整理
+    <a href="/2020/03/08/coin-change/" rel="prev" title="零钱兑换 - LeetCode">
+      <i class="fa fa-chevron-left"></i> 零钱兑换 - LeetCode
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/03/05/string-to-integer-atoi/" rel="next" title="字符串转换整数 (atoi) - LeetCode">
-      字符串转换整数 (atoi) - LeetCode <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
