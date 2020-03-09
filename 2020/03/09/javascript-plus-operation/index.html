@@ -20,21 +20,22 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="个人学习记录">
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="http://yoursite.com/tags/index.html">
+  <meta name="description" content="加法运算符定义加法运算符是用来连接字符串或数字相加的 运算过程定义 AdditiveExpression : AdditiveExpression + MultiplicativeExpression   把AdditiveExpression的result赋值给lref 把GetValue(lref)的结果赋值给lval 把MultiplicativeExpression的result赋值给rr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript 加号运算">
+<meta property="og:url" content="http://yoursite.com/2020/03/09/javascript-plus-operation/index.html">
 <meta property="og:site_name" content="HwaelCode">
-<meta property="og:description" content="个人学习记录">
+<meta property="og:description" content="加法运算符定义加法运算符是用来连接字符串或数字相加的 运算过程定义 AdditiveExpression : AdditiveExpression + MultiplicativeExpression   把AdditiveExpression的result赋值给lref 把GetValue(lref)的结果赋值给lval 把MultiplicativeExpression的result赋值给rr">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-03-04T09:37:52.000Z">
-<meta property="article:modified_time" content="2020-03-04T09:41:46.224Z">
+<meta property="article:published_time" content="2020-03-09T02:23:45.000Z">
+<meta property="article:modified_time" content="2020-03-09T02:39:30.336Z">
 <meta property="article:author" content="Hwael">
 <meta property="article:tag" content="JavaScript">
-<meta property="article:tag" content=" LeetCode">
+<meta property="article:tag" content="数据类型">
+<meta property="article:tag" content="隐式转换">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/tags/">
+<link rel="canonical" href="http://yoursite.com/2020/03/09/javascript-plus-operation/">
 
 
 <script id="page-configurations">
@@ -42,12 +43,11 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false
+    isPost : true
   };
 </script>
 
-  <title>tags | HwaelCode
-  </title>
+  <title>JavaScript 加号运算 | HwaelCode</title>
   
 
 
@@ -192,57 +192,224 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
           <div class="content">
             
 
   <div class="posts-expand">
-    
-    
-    
-    <div class="post-block" lang="zh-CN">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/09/javascript-plus-operation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Hwael">
+      <meta itemprop="description" content="个人学习记录">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HwaelCode">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JavaScript 加号运算
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">tags
-</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
 
-<div class="post-meta">
+              <time title="创建时间：2020-03-09 10:23:45 / 修改时间：10:39:30" itemprop="dateCreated datePublished" datetime="2020-03-09T10:23:45+08:00">2020-03-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/03/09/javascript-plus-operation/" class="post-meta-item leancloud_visitors" data-flag-title="JavaScript 加号运算" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/03/09/javascript-plus-operation/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/03/09/javascript-plus-operation/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
   
 
-</div>
+        </div>
+      </header>
 
-</header>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-      
-      
-      <div class="post-body">
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-              目前共计 11 个标签
-            </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/JavaScript/" style="font-size: 21px; color: #6f6f6f">JavaScript</a> <a href="/tags/Kadane-%E7%AE%97%E6%B3%95/" style="font-size: 12px; color: #ccc">Kadane 算法</a> <a href="/tags/LeetCode/" style="font-size: 30px; color: #111">LeetCode</a> <a href="/tags/%E5%88%86%E6%B2%BB%E6%B3%95/" style="font-size: 12px; color: #ccc">分治法</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 21px; color: #6f6f6f">动态规划</a> <a href="/tags/%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-BFS/" style="font-size: 12px; color: #ccc">广度优先搜索(BFS)</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 21px; color: #6f6f6f">数据类型</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 30px; color: #111">算法</a> <a href="/tags/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" style="font-size: 12px; color: #ccc">贪心算法</a> <a href="/tags/%E9%93%BE%E8%A1%A8/" style="font-size: 12px; color: #ccc">链表</a> <a href="/tags/%E9%9A%90%E5%BC%8F%E8%BD%AC%E6%8D%A2/" style="font-size: 21px; color: #6f6f6f">隐式转换</a>
-            </div>
-          </div>
-        
-      </div>
-      
-      
-      
+        <h1 id="加法运算符"><a href="#加法运算符" class="headerlink" title="加法运算符"></a>加法运算符</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>加法运算符是用来连接字符串或数字相加的</p>
+<h2 id="运算过程定义"><a href="#运算过程定义" class="headerlink" title="运算过程定义"></a>运算过程定义</h2><blockquote>
+<p>AdditiveExpression : AdditiveExpression + MultiplicativeExpression</p>
+</blockquote>
+<ol>
+<li>把AdditiveExpression的result赋值给lref</li>
+<li>把GetValue(lref)的结果赋值给lval</li>
+<li>把MultiplicativeExpression的result赋值给rref</li>
+<li>把GetValue(rref)的结果赋值给rval</li>
+<li>把ToPrimitive(lval)的结果赋值给lprim</li>
+<li>把ToPrimitive(lval)的结果赋值给rprim</li>
+<li>如果Type(lprim)和Type(rprim)中有一个是String，则<br> a. 把ToString(lprim)的结果赋给lstr<br> b. 把ToString(rprim)的结果赋给rstr<br> c. 返回lstr和rstr拼接的字符串</li>
+<li>把ToNumber(lprim)的结果赋给lnum</li>
+<li>把ToNumber(rprim)的结果赋给rnum</li>
+<li>返回lnum和rnum相加的数值</li>
+</ol>
+<a id="more"></a>
+
+<h1 id="一元-运算符"><a href="#一元-运算符" class="headerlink" title="一元 + 运算符"></a>一元 + 运算符</h1><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><p>一元运算符“+”是用来把目标转化成数字类型的</p>
+<h2 id="运算过程定义-1"><a href="#运算过程定义-1" class="headerlink" title="运算过程定义"></a>运算过程定义</h2><blockquote>
+<p>UnaryExpression : + UnaryExpression</p>
+</blockquote>
+<ol>
+<li>把UnaryExpression的result赋值给expr</li>
+<li>返回ToNumber(GetValue(expr))</li>
+</ol>
+<h2 id="规范"><a href="#规范" class="headerlink" title="规范"></a>规范</h2><p><code>ToNumber(GetValue(expr))</code></p>
+<p>概括来说就是转换时 <code>hint</code> 为 <code>number</code>，对于原始值类型（<code>Undefined</code>, <code>Null</code>, <code>Boolean</code>, <code>Number</code>, <code>Symbol</code>, <code>String</code>），直接使用内部 <code>ToNumber</code> 转换成数字</p>
+<h3 id="ToNumber-转换表格"><a href="#ToNumber-转换表格" class="headerlink" title="ToNumber 转换表格"></a>ToNumber 转换表格</h3><table>
+<thead>
+<tr>
+<th>输入类型</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Undefined</td>
+<td><code>NaN</code></td>
+</tr>
+<tr>
+<td>Null</td>
+<td><code>+0</code></td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td><code>+0</code> 或者 <code>1</code></td>
+</tr>
+<tr>
+<td>Number</td>
+<td>不转换</td>
+</tr>
+<tr>
+<td>String</td>
+<td>参见下文的文法与注释</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>TypeError</td>
+</tr>
+<tr>
+<td>Object</td>
+<td><code>ToNumber(ToPrimitive(input,Number))</code></td>
+</tr>
+</tbody></table>
+<h1 id="加号运算题目"><a href="#加号运算题目" class="headerlink" title="加号运算题目"></a>加号运算题目</h1><ol>
+<li><code>[ ] + [ ]</code></li>
+</ol>
+<blockquote>
+<p>进行 <code>ToPrimitive</code>，两个都是 <code>Array</code> 对象，不是 <code>Date</code> 对象，所以 <code>Number</code> 为转换标准，所以先调用<code>valueOf()</code>，结果还是[ ]，不是原始值，所以继续调用 <code>toString()</code>，结果是“”原始值，将“”回。<br>第二个[ ]过程是相同的，返回“”。<br>加号两边结果都是 <code>String</code> 类型，所以进行字符串拼接，结果是“”。</p>
+</blockquote>
+<ol start="2">
+<li><code>[ ] + { }</code></li>
+</ol>
+<blockquote>
+<p>进行 <code>ToPrimitive</code>，依然是以 <code>Number</code> 为转换标准。<br>[ ]的结果是 “”。<br>{ }先调用 <code>valueOf()</code>，结果是{ }，不是原始值，所以继续调用 <code>toString()</code>，结果是“<code>[object Object]</code>”,是原始值，将“<code>[object Object]</code>”返回。<br>加号两边结果都是 <code>String</code> 类型，所以进行字符串拼接，结果是 “<code>[object Object]</code>“。</p>
+</blockquote>
+<ol start="3">
+<li><code>{ } + [ ]</code></li>
+</ol>
+<blockquote>
+<p>这道题按照上一题的步骤，讲道理的话，结果应该还是“<code>[object Object]</code>”，但结果却如人意料——显示的答案是0.<br>这是什么原因呢？原来{ } + [ ]被解析成了{ };+[ ]，前面是一个空代码块被略过，剩下+[ ]就成了一元运算。[ ]的原值是””， 将””转化成 <code>Number</code> 结果是0。</p>
+</blockquote>
+<ol start="4">
+<li><code>{ } + { }</code></li>
+</ol>
+<blockquote>
+<p>这道题的结果在不同的环境下结果不一样。<br>在金丝雀版本的 chrome 浏览器和 node 中，结果符合预期。结果是”<code>[object Object][object Object]</code>“。<br>在普通版本的 <code>chrome</code> 浏览器中结果是 <code>NaN</code><br>这是为什么呢？原因是在 node 中会将以“{”开始，“}”结束的语句外面包裹一层( )，就变成了 <code>({ } + { })</code>，结果就符合预期。而普通版本的 chrome 依然会解析成 <code>{};+{}</code>，结果就变成了 <code>NaN</code>。</p>
+</blockquote>
+<ol start="5">
+<li><code>++[[ ]][+[ ]]+[+[ ]]</code></li>
+</ol>
+<blockquote>
+<p>拆解过程</p>
+<ol>
+<li>先拆分成A：<code>++[[ ]][+[ ]]</code> 和 B：<code>[+[ ]]</code></li>
+<li>B式比较简单：<code>[0]</code></li>
+<li>A式转换成 <code>++[[ ]][0]</code> 也就是 <code>++[ ]</code></li>
+<li>A式结果为 1</li>
+<li>1 + [0]</li>
+<li>结果是 “10”</li>
+</ol>
+</blockquote>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p><a href="https://sinaad.github.io/xfe/2016/04/15/ToPrimitive/" target="_blank" rel="noopener">js隐式装箱-ToPrimitive</a></p>
+
     </div>
-    
 
     
     
     
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag"># 数据类型</a>
+              <a href="/tags/%E9%9A%90%E5%BC%8F%E8%BD%AC%E6%8D%A2/" rel="tag"># 隐式转换</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/08/maximum-subarray/" rel="prev" title="最大子序和 - LeetCode">
+      <i class="fa fa-chevron-left"></i> 最大子序和 - LeetCode
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
 
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -289,6 +456,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#加法运算符"><span class="nav-number">1.</span> <span class="nav-text">加法运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运算过程定义"><span class="nav-number">1.2.</span> <span class="nav-text">运算过程定义</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一元-运算符"><span class="nav-number">2.</span> <span class="nav-text">一元 + 运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义-1"><span class="nav-number">2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运算过程定义-1"><span class="nav-number">2.2.</span> <span class="nav-text">运算过程定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#规范"><span class="nav-number">2.3.</span> <span class="nav-text">规范</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ToNumber-转换表格"><span class="nav-number">2.3.1.</span> <span class="nav-text">ToNumber 转换表格</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#加号运算题目"><span class="nav-number">3.</span> <span class="nav-text">加号运算题目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文章"><span class="nav-number">4.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

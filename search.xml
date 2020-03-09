@@ -1,6 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>JavaScript 加号运算</title>
+    <url>/2020/03/09/javascript-plus-operation/</url>
+    <content><![CDATA[<h1 id="加法运算符"><a href="#加法运算符" class="headerlink" title="加法运算符"></a>加法运算符</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>加法运算符是用来连接字符串或数字相加的</p>
+<h2 id="运算过程定义"><a href="#运算过程定义" class="headerlink" title="运算过程定义"></a>运算过程定义</h2><blockquote>
+<p>AdditiveExpression : AdditiveExpression + MultiplicativeExpression</p>
+</blockquote>
+<ol>
+<li>把AdditiveExpression的result赋值给lref</li>
+<li>把GetValue(lref)的结果赋值给lval</li>
+<li>把MultiplicativeExpression的result赋值给rref</li>
+<li>把GetValue(rref)的结果赋值给rval</li>
+<li>把ToPrimitive(lval)的结果赋值给lprim</li>
+<li>把ToPrimitive(lval)的结果赋值给rprim</li>
+<li>如果Type(lprim)和Type(rprim)中有一个是String，则<br> a. 把ToString(lprim)的结果赋给lstr<br> b. 把ToString(rprim)的结果赋给rstr<br> c. 返回lstr和rstr拼接的字符串</li>
+<li>把ToNumber(lprim)的结果赋给lnum</li>
+<li>把ToNumber(rprim)的结果赋给rnum</li>
+<li>返回lnum和rnum相加的数值</li>
+</ol>
+<a id="more"></a>
+
+<h1 id="一元-运算符"><a href="#一元-运算符" class="headerlink" title="一元 + 运算符"></a>一元 + 运算符</h1><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><p>一元运算符“+”是用来把目标转化成数字类型的</p>
+<h2 id="运算过程定义-1"><a href="#运算过程定义-1" class="headerlink" title="运算过程定义"></a>运算过程定义</h2><blockquote>
+<p>UnaryExpression : + UnaryExpression</p>
+</blockquote>
+<ol>
+<li>把UnaryExpression的result赋值给expr</li>
+<li>返回ToNumber(GetValue(expr))</li>
+</ol>
+<h2 id="规范"><a href="#规范" class="headerlink" title="规范"></a>规范</h2><p><code>ToNumber(GetValue(expr))</code></p>
+<p>概括来说就是转换时 <code>hint</code> 为 <code>number</code>，对于原始值类型（<code>Undefined</code>, <code>Null</code>, <code>Boolean</code>, <code>Number</code>, <code>Symbol</code>, <code>String</code>），直接使用内部 <code>ToNumber</code> 转换成数字</p>
+<h3 id="ToNumber-转换表格"><a href="#ToNumber-转换表格" class="headerlink" title="ToNumber 转换表格"></a>ToNumber 转换表格</h3><table>
+<thead>
+<tr>
+<th>输入类型</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Undefined</td>
+<td><code>NaN</code></td>
+</tr>
+<tr>
+<td>Null</td>
+<td><code>+0</code></td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td><code>+0</code> 或者 <code>1</code></td>
+</tr>
+<tr>
+<td>Number</td>
+<td>不转换</td>
+</tr>
+<tr>
+<td>String</td>
+<td>参见下文的文法与注释</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>TypeError</td>
+</tr>
+<tr>
+<td>Object</td>
+<td><code>ToNumber(ToPrimitive(input,Number))</code></td>
+</tr>
+</tbody></table>
+<h1 id="加号运算题目"><a href="#加号运算题目" class="headerlink" title="加号运算题目"></a>加号运算题目</h1><ol>
+<li><code>[ ] + [ ]</code></li>
+</ol>
+<blockquote>
+<p>进行 <code>ToPrimitive</code>，两个都是 <code>Array</code> 对象，不是 <code>Date</code> 对象，所以 <code>Number</code> 为转换标准，所以先调用<code>valueOf()</code>，结果还是[ ]，不是原始值，所以继续调用 <code>toString()</code>，结果是“”原始值，将“”回。<br>第二个[ ]过程是相同的，返回“”。<br>加号两边结果都是 <code>String</code> 类型，所以进行字符串拼接，结果是“”。</p>
+</blockquote>
+<ol start="2">
+<li><code>[ ] + { }</code></li>
+</ol>
+<blockquote>
+<p>进行 <code>ToPrimitive</code>，依然是以 <code>Number</code> 为转换标准。<br>[ ]的结果是 “”。<br>{ }先调用 <code>valueOf()</code>，结果是{ }，不是原始值，所以继续调用 <code>toString()</code>，结果是“<code>[object Object]</code>”,是原始值，将“<code>[object Object]</code>”返回。<br>加号两边结果都是 <code>String</code> 类型，所以进行字符串拼接，结果是 “<code>[object Object]</code>“。</p>
+</blockquote>
+<ol start="3">
+<li><code>{ } + [ ]</code></li>
+</ol>
+<blockquote>
+<p>这道题按照上一题的步骤，讲道理的话，结果应该还是“<code>[object Object]</code>”，但结果却如人意料——显示的答案是0.<br>这是什么原因呢？原来{ } + [ ]被解析成了{ };+[ ]，前面是一个空代码块被略过，剩下+[ ]就成了一元运算。[ ]的原值是””， 将””转化成 <code>Number</code> 结果是0。</p>
+</blockquote>
+<ol start="4">
+<li><code>{ } + { }</code></li>
+</ol>
+<blockquote>
+<p>这道题的结果在不同的环境下结果不一样。<br>在金丝雀版本的 chrome 浏览器和 node 中，结果符合预期。结果是”<code>[object Object][object Object]</code>“。<br>在普通版本的 <code>chrome</code> 浏览器中结果是 <code>NaN</code><br>这是为什么呢？原因是在 node 中会将以“{”开始，“}”结束的语句外面包裹一层( )，就变成了 <code>({ } + { })</code>，结果就符合预期。而普通版本的 chrome 依然会解析成 <code>{};+{}</code>，结果就变成了 <code>NaN</code>。</p>
+</blockquote>
+<ol start="5">
+<li><code>++[[ ]][+[ ]]+[+[ ]]</code></li>
+</ol>
+<blockquote>
+<p>拆解过程</p>
+<ol>
+<li>先拆分成A：<code>++[[ ]][+[ ]]</code> 和 B：<code>[+[ ]]</code></li>
+<li>B式比较简单：<code>[0]</code></li>
+<li>A式转换成 <code>++[[ ]][0]</code> 也就是 <code>++[ ]</code></li>
+<li>A式结果为 1</li>
+<li>1 + [0]</li>
+<li>结果是 “10”</li>
+</ol>
+</blockquote>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p><a href="https://sinaad.github.io/xfe/2016/04/15/ToPrimitive/" target="_blank" rel="noopener">js隐式装箱-ToPrimitive</a></p>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>数据类型</tag>
+        <tag>隐式转换</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>最大子序和 - LeetCode</title>
     <url>/2020/03/08/maximum-subarray/</url>
     <content><![CDATA[<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>最大子序和</p>
@@ -57,7 +173,6 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
         <tag>LeetCode</tag>
         <tag>算法</tag>
         <tag>动态规划</tag>
@@ -118,7 +233,6 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
         <tag>LeetCode</tag>
         <tag>算法</tag>
         <tag>动态规划</tag>
@@ -162,7 +276,6 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
         <tag>LeetCode</tag>
         <tag>算法</tag>
         <tag>链表</tag>
@@ -208,7 +321,6 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
         <tag>LeetCode</tag>
         <tag>算法</tag>
       </tags>
@@ -244,7 +356,6 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
         <tag>LeetCode</tag>
         <tag>算法</tag>
         <tag>广度优先搜索(BFS)</tag>
