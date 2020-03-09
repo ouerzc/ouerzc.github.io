@@ -20,21 +20,22 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="题目字符串转换整数 (atoi) 描述请你来实现一个 atoi 函数，使其能将字符串转换成整数。首先，该函数会根据需要丢弃无用的开头空格字符，直到寻找到第一个非空格的字符为止。 当我们寻找到的第一个非空字符为正或者负号时，则将该符号与之后面尽可能多的连续数字组合起来，作为该整数的正负号；假如第一个非空字符是数字，则直接将其与之后连续的数字字符组合起来，形成整数。">
+  <meta name="description" content="题目零钱兑换 描述给定不同面额的硬币 coins 和一个总金额 amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数。如果没有任何一种硬币组合能组成总金额，返回 -1。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="字符串转换整数 (atoi) - LeetCode">
-<meta property="og:url" content="http://yoursite.com/2020/03/05/string-to-integer-atoi/index.html">
+<meta property="og:title" content="零钱兑换 - LeetCode">
+<meta property="og:url" content="http://yoursite.com/2020/03/08/leetcode-coin-change/index.html">
 <meta property="og:site_name" content="HwaelCode">
-<meta property="og:description" content="题目字符串转换整数 (atoi) 描述请你来实现一个 atoi 函数，使其能将字符串转换成整数。首先，该函数会根据需要丢弃无用的开头空格字符，直到寻找到第一个非空格的字符为止。 当我们寻找到的第一个非空字符为正或者负号时，则将该符号与之后面尽可能多的连续数字组合起来，作为该整数的正负号；假如第一个非空字符是数字，则直接将其与之后连续的数字字符组合起来，形成整数。">
+<meta property="og:description" content="题目零钱兑换 描述给定不同面额的硬币 coins 和一个总金额 amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数。如果没有任何一种硬币组合能组成总金额，返回 -1。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-03-05T04:47:06.000Z">
-<meta property="article:modified_time" content="2020-03-09T02:36:19.181Z">
+<meta property="article:published_time" content="2020-03-08T15:47:51.000Z">
+<meta property="article:modified_time" content="2020-03-09T17:14:11.942Z">
 <meta property="article:author" content="Hwael">
 <meta property="article:tag" content="LeetCode">
 <meta property="article:tag" content="算法">
+<meta property="article:tag" content="动态规划">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2020/03/05/string-to-integer-atoi/">
+<link rel="canonical" href="http://yoursite.com/2020/03/08/leetcode-coin-change/">
 
 
 <script id="page-configurations">
@@ -46,7 +47,7 @@
   };
 </script>
 
-  <title>字符串转换整数 (atoi) - LeetCode | HwaelCode</title>
+  <title>零钱兑换 - LeetCode | HwaelCode</title>
   
 
 
@@ -200,7 +201,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/05/string-to-integer-atoi/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/08/leetcode-coin-change/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpeg">
@@ -213,7 +214,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          字符串转换整数 (atoi) - LeetCode
+          零钱兑换 - LeetCode
         </h1>
 
         <div class="post-meta">
@@ -223,14 +224,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-03-05 12:47:06" itemprop="dateCreated datePublished" datetime="2020-03-05T12:47:06+08:00">2020-03-05</time>
+              <time title="创建时间：2020-03-08 23:47:51" itemprop="dateCreated datePublished" datetime="2020-03-08T23:47:51+08:00">2020-03-08</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-09 10:36:19" itemprop="dateModified" datetime="2020-03-09T10:36:19+08:00">2020-03-09</time>
+                <time title="修改时间：2020-03-10 01:14:11" itemprop="dateModified" datetime="2020-03-10T01:14:11+08:00">2020-03-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -243,7 +244,7 @@
             </span>
 
           
-            <span id="/2020/03/05/string-to-integer-atoi/" class="post-meta-item leancloud_visitors" data-flag-title="字符串转换整数 (atoi) - LeetCode" title="阅读次数">
+            <span id="/2020/03/08/leetcode-coin-change/" class="post-meta-item leancloud_visitors" data-flag-title="零钱兑换 - LeetCode" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -258,8 +259,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/03/05/string-to-integer-atoi/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/03/05/string-to-integer-atoi/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/03/08/leetcode-coin-change/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/03/08/leetcode-coin-change/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -274,38 +275,50 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>字符串转换整数 (atoi)</p>
-<h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><p>请你来实现一个 atoi 函数，使其能将字符串转换成整数。<br>首先，该函数会根据需要丢弃无用的开头空格字符，直到寻找到第一个非空格的字符为止。</p>
-<p>当我们寻找到的第一个非空字符为正或者负号时，则将该符号与之后面尽可能多的连续数字组合起来，作为该整数的正负号；假如第一个非空字符是数字，则直接将其与之后连续的数字字符组合起来，形成整数。</p>
+        <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>零钱兑换</p>
+<h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><p>给定不同面额的硬币 coins 和一个总金额 amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数。如果没有任何一种硬币组合能组成总金额，返回 -1。</p>
 <a id="more"></a>
+<p>示例 1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: coins &#x3D; [1, 2, 5], amount &#x3D; 11</span><br><span class="line">输出: 3 </span><br><span class="line">解释: 11 &#x3D; 5 + 5 + 1</span><br></pre></td></tr></table></figure>
+<p>示例 2:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: coins &#x3D; [2], amount &#x3D; 3</span><br><span class="line">输出: -1</span><br></pre></td></tr></table></figure>
 
-<p>该字符串除了有效的整数部分之后也可能会存在多余的字符，这些字符可以被忽略，它们对于函数不应该造成影响。</p>
-<p>注意：假如该字符串中的第一个非空格字符不是一个有效整数字符、字符串为空或字符串仅包含空白字符时，则你的函数不需要进行转换。</p>
-<p>在任何情况下，若函数不能进行有效的转换时，请返回 0。</p>
-<p>说明：</p>
-<p>假设我们的环境只能存储 32 位大小的有符号整数，那么其数值范围为 [−231,  231 − 1]。如果数值超过这个范围，请返回  INT_MAX (231 − 1) 或 INT_MIN (−231) 。</p>
+<p>说明:<br>你可以认为每种硬币的数量是无限的。</p>
 <h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a><strong>思考</strong></h1><ol>
-<li>解法一:<br> 纯根据规则来做各种判断</li>
-<li>解法二:<br> 利用 js 的 <code>parseInt</code> 函数来转换</li>
-<li>解法三:<br> 利用正则来转换</li>
+<li>利用动态规划法</li>
 </ol>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p>解法一:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;string&#125;</span> <span class="variable">str</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> myAtoi = <span class="function"><span class="keyword">function</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!str) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> len = str.length;</span><br><span class="line">    <span class="keyword">const</span> MAX_VALUE = <span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">31</span>) - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">const</span> MIN_VALUE = <span class="built_in">Math</span>.pow(<span class="number">-2</span>, <span class="number">31</span>);</span><br><span class="line">    <span class="comment">// 1. 去空格</span></span><br><span class="line">    <span class="keyword">let</span> index = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (index &lt; len) &#123;</span><br><span class="line">        <span class="keyword">if</span> (str[index] != <span class="string">' '</span>) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        index++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (index === len) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 判断首位是符号的情况</span></span><br><span class="line">    <span class="keyword">let</span> sign = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (str[index] === <span class="string">'+'</span>) &#123;</span><br><span class="line">        sign = <span class="number">1</span>;</span><br><span class="line">        index++;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (str[index] === <span class="string">'-'</span>) &#123;</span><br><span class="line">        sign = <span class="number">-1</span>;</span><br><span class="line">        index++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. 对数字的判断</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (index &lt; len) &#123;</span><br><span class="line">        <span class="keyword">if</span> (str[index] &gt; <span class="string">'9'</span> || str[index] &lt; <span class="string">'0'</span>) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        res = res * <span class="number">10</span> + sign * (str[index] - <span class="string">'0'</span>);</span><br><span class="line">        index++;</span><br><span class="line">        <span class="keyword">if</span> (res &gt; MAX_VALUE) &#123;</span><br><span class="line">            res = MAX_VALUE;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (res &lt; MIN_VALUE) &#123;</span><br><span class="line">            res = MIN_VALUE;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><ol>
+<li>解法一：<br>动态规划-自上而下<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">coins</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">amount</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> coinChange = <span class="function"><span class="keyword">function</span>(<span class="params">coins, amount</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!coins) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (amount &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> dpMap = [];</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">dp</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (dpMap[n] &gt;= <span class="number">-1</span>) <span class="keyword">return</span> dpMap[n];</span><br><span class="line">        <span class="keyword">if</span> (n === <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (n &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">let</span> res = <span class="literal">Infinity</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; coins.length; i++) &#123;</span><br><span class="line">            <span class="keyword">const</span> sub = dp(n - coins[i]);</span><br><span class="line">            <span class="keyword">if</span> (sub == <span class="number">-1</span>) <span class="keyword">continue</span>;</span><br><span class="line">            res = <span class="built_in">Math</span>.min(res, sub + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        dpMap[n] = res !== <span class="literal">Infinity</span> ? res : <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">return</span> dpMap[n];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> dp(amount);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>复杂度分析：</p>
 <ul>
-<li>结果<br>执行用时: 88 ms, 在所有 JavaScript 提交中击败了 65.27% 的用户<br>内存消耗: 36.5 MB, 在所有 JavaScript 提交中击败了 33.25% 的用户</li>
+<li>时间复杂度：<code>O(Sn)</code>，其中 <code>S</code> 是金额，<code>n</code> 是面额数。我们一共需要计算 <code>S</code> 个状态的答案，且每个状态 <code>F(S)</code> 由于上面的记忆化的措施只计算了一次，而计算一个状态的答案需要枚举 <code>n</code> 个面额值，所以一共需要 <code>O(Sn)</code> 的时间复杂度。</li>
+<li>空间复杂度：<code>O(S)</code>，我们需要额外开一个长为 <code>S</code> 的数组来存储计算出来的答案 <code>F(S)</code>。</li>
 </ul>
-<p>解法二:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;string&#125;</span> <span class="variable">str</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> myAtoi = <span class="function"><span class="keyword">function</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">    str = str.trim();</span><br><span class="line">    <span class="keyword">const</span> MAX_VALUE = <span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">31</span>) - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">const</span> MIN_VALUE = <span class="built_in">Math</span>.pow(<span class="number">-2</span>, <span class="number">31</span>);</span><br><span class="line">    <span class="keyword">const</span> num = <span class="built_in">parseInt</span>(str, <span class="number">10</span>);</span><br><span class="line">    <span class="keyword">if</span> (num &gt; MAX_VALUE) &#123;</span><br><span class="line">        <span class="keyword">return</span> MAX_VALUE;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (num &lt; MIN_VALUE) &#123;</span><br><span class="line">        <span class="keyword">return</span> MIN_VALUE;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">isNaN</span>(num) ? <span class="number">0</span> : num;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>执行结果：</p>
 <ul>
-<li>结果<br>执行用时: 92 ms, 在所有 JavaScript 提交中击败了 50.40% 的用户<br>内存消耗: 35.8 MB, 在所有 JavaScript 提交中击败了 76.69% 的用户</li>
+<li>执行用时: 232 ms, 在所有 JavaScript 提交中击败了 17.55% 的用户</li>
+<li>内存消耗: 38.8 MB, 在所有 JavaScript 提交中击败了 57.46% 的用户</li>
 </ul>
-<p>解法三:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;string&#125;</span> <span class="variable">str</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> myAtoi = <span class="function"><span class="keyword">function</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">    str = str.trim()</span><br><span class="line">    <span class="keyword">const</span> reg = <span class="regexp">/^[\+\-]?\d+/</span></span><br><span class="line">    <span class="keyword">const</span> res = str.match(reg)</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.max.call(<span class="literal">null</span>, <span class="built_in">Math</span>.min.call(<span class="literal">null</span>, res, <span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">31</span>) - <span class="number">1</span>), <span class="built_in">Math</span>.pow(<span class="number">-2</span>, <span class="number">31</span>))</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>解法二：<br>动态规划 - 自下而上<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">coins</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">amount</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> coinChange = <span class="function"><span class="keyword">function</span>(<span class="params">coins, amount</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> dp = <span class="keyword">new</span> <span class="built_in">Array</span>(amount + <span class="number">1</span>).fill(<span class="literal">Infinity</span>);</span><br><span class="line">    dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> coin <span class="keyword">of</span> coins) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= amount; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i - coin &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                dp[i] = <span class="built_in">Math</span>.min(dp[i], dp[i - coin] + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[amount] === <span class="literal">Infinity</span> ? <span class="number">-1</span> : dp[amount];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>复杂度分析：</p>
 <ul>
-<li>结果<br>执行用时: 92 ms, 在所有 JavaScript 提交中击败了 50.40% 的用户<br>内存消耗: 36 MB, 在所有 JavaScript 提交中击败了 67.61% 的用户</li>
+<li>时间复杂度：<code>O(Sn)</code>，其中 <code>S</code> 是金额，<code>n</code> 是面额数。我们一共需要计算 <code>O(S)</code> 个状态，<code>S</code> 为题目所给的总金额。对于每个状态，每次需要枚举 <code>n</code> 个面额来转移状态，所以一共需要 <code>O(Sn)</code> 的时间复杂度。</li>
+<li>空间复杂度：<code>O(S)</code>。DP 数组需要开长度为总金额 <code>S</code> 的空间。</li>
+</ul>
+<p>执行结果：</p>
+<ul>
+<li>执行用时: 108 ms, 在所有 JavaScript 提交中击败了 79.94% 的用户</li>
+<li>内存消耗: 37.2 MB, 在所有 JavaScript 提交中击败了 82.32% 的用户</li>
 </ul>
 <h1 id="难度"><a href="#难度" class="headerlink" title="难度"></a>难度</h1><p>中等</p>
-<h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/string-to-integer-atoi" target="_blank" rel="noopener">字符串转换整数 (atoi) - LeetCode</a></p>
+<h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/coin-change" target="_blank" rel="noopener">零钱兑换 - LeetCode</a></p>
 
     </div>
 
@@ -317,6 +330,7 @@
           <div class="post-tags">
               <a href="/tags/LeetCode/" rel="tag"># LeetCode</a>
               <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+              <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag"># 动态规划</a>
           </div>
 
         
@@ -325,12 +339,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/03/03/rotting-oranges/" rel="prev" title="腐烂的橘子 - LeetCode">
-      <i class="fa fa-chevron-left"></i> 腐烂的橘子 - LeetCode
+    <a href="/2020/03/05/leetcode-reverse-nodes-in-k-group/" rel="prev" title="K 个一组翻转链表 - LeetCode">
+      <i class="fa fa-chevron-left"></i> K 个一组翻转链表 - LeetCode
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/03/05/reverse-nodes-in-k-group/" rel="next" title="K 个一组翻转链表 - LeetCode">
-      K 个一组翻转链表 - LeetCode <i class="fa fa-chevron-right"></i>
+    <a href="/2020/03/08/leetcode-maximum-subarray/" rel="next" title="最大子序和 - LeetCode">
+      最大子序和 - LeetCode <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -408,7 +422,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -421,7 +435,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
