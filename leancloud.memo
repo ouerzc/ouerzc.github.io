@@ -13,4 +13,7 @@
 {"title":"JavaScript 加号运算","url":"/2020/03/09/javascript-plus-operation/"},
 {"title":"二叉树的直径 - LeetCode","url":"/2020/03/10/leetcode-diameter-of-binary-tree/"},
 {"title":"将数组分成和相等的三个部分 - LeetCode","url":"/2020/03/11/leetcode-partition-array-into-three-parts-with-equal-sum/"},
+{"title":"灯泡开关 III - LeetCode","url":"/2020/03/14/leetcode-bulb-switcher-iii/"},
+{"title":"生成每种字符都是奇数个的字符串 - LeetCode","url":"/2020/03/14/leetcode-generate-a-string-with-characters-that-have-odd-counts/"},
+{"title":"通知所有员工所需的时间 - LeetCode","url":"/2020/03/14/leetcode-time-needed-to-inform-all-employees/"},
 ]
