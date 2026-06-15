@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
+import CollectionHeader from "../../../../components/CollectionHeader.astro";
+import Pagination from "../../../../components/Pagination.astro";
+import PostList from "../../../../components/PostList.astro";
+import { getAllPosts, paginate } from "../../../../lib/posts";
+
+export async function getStaticPaths() {
+  const pages = paginate(await getAllPosts());
+  return pages.slice(1).map((page) => ({
+    params: { page: String(page.page) },
+    props: page,
+  }));
+}
+
+const page = Astro.props;
+---
+
+<BaseLayout title={`归档 - 第 ${page.page} 页`}>
+  <CollectionHeader title="归档" />
+  <PostList posts={page.items} />
+  <Pagination currentPage={page.page} totalPages={page.totalPages} baseRoute="/archives/" />
+</BaseLayout>

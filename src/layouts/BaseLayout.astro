@@ -1,0 +1,363 @@
+---
+import { SITE } from "../lib/site";
+import { getAllPosts, taxonomyCounts } from "../lib/posts";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = SITE.title, description = SITE.description } = Astro.props;
+const pageTitle = title === SITE.title ? SITE.title : `${title} | ${SITE.title}`;
+const allPosts = await getAllPosts();
+const tagCount = taxonomyCounts(allPosts, "tags").length;
+const categoryCount = taxonomyCounts(allPosts, "categories").length;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2" />
+    <meta name="theme-color" content="#222" />
+    <meta name="description" content={description} />
+    <meta name="author" content={SITE.author} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:site_name" content={SITE.title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content="zh_CN" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="canonical" href={new URL(Astro.url.pathname, SITE.url).toString()} />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png" />
+    <link rel="mask-icon" href="/images/logo.svg" color="#222" />
+    <link rel="alternate" href="/atom.xml" title={SITE.title} type="application/atom+xml" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css" />
+    <title>{pageTitle}</title>
+  </head>
+  <body itemscope itemtype="http://schema.org/WebPage">
+    <div class="container use-motion">
+      <div class="headband"></div>
+
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner">
+          <div class="site-brand-container">
+            <button class="site-nav-toggle toggle" type="button" aria-label="切换导航栏">
+              <span class="toggle-line toggle-line-first"></span>
+              <span class="toggle-line toggle-line-middle"></span>
+              <span class="toggle-line toggle-line-last"></span>
+            </button>
+
+            <div class="site-meta">
+              <a href="/" class="brand" rel="start">
+                <span class="logo-line-before"><i></i></span>
+                <span class="site-title">{SITE.title}</span>
+                <span class="logo-line-after"><i></i></span>
+              </a>
+            </div>
+
+            <div class="site-nav-right">
+              <button class="toggle popup-trigger" type="button" aria-label="搜索">
+                <i class="fa fa-search fa-fw fa-lg"></i>
+              </button>
+            </div>
+          </div>
+
+          <nav class="site-nav" aria-label="主导航">
+            <ul id="menu" class="menu">
+              <li class="menu-item menu-item-home">
+                <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+              </li>
+              <li class="menu-item menu-item-tags">
+                <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+              </li>
+              <li class="menu-item menu-item-categories">
+                <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+              </li>
+              <li class="menu-item menu-item-archives">
+                <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+              </li>
+              <li class="menu-item menu-item-search">
+                <button class="popup-trigger menu-button" type="button">
+                  <i class="fa fa-search fa-fw"></i>搜索
+                </button>
+              </li>
+            </ul>
+          </nav>
+
+          <div class="site-search">
+            <div class="popup search-popup" role="dialog" aria-label="搜索">
+              <div class="search-header">
+                <span class="search-icon"><i class="fa fa-search"></i></span>
+                <div class="search-input-container">
+                  <input
+                    autocomplete="off"
+                    autocorrect="off"
+                    autocapitalize="off"
+                    placeholder="搜索..."
+                    spellcheck="false"
+                    type="search"
+                    class="search-input"
+                  />
+                </div>
+                <button class="popup-btn-close" type="button" aria-label="关闭搜索">
+                  <i class="fa fa-times-circle"></i>
+                </button>
+              </div>
+              <div id="search-result"></div>
+            </div>
+            <div class="search-pop-overlay"></div>
+          </div>
+        </div>
+      </header>
+
+      <a
+        href={SITE.github}
+        class="github-corner"
+        title="Follow me on GitHub"
+        aria-label="Follow me on GitHub"
+        rel="noopener"
+        target="_blank"
+      >
+        <svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true">
+          <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+          <path
+            d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+            fill="currentColor"
+            class="octo-arm"></path>
+          <path
+            d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+            fill="currentColor"
+            class="octo-body"></path>
+        </svg>
+      </a>
+
+      <main class="main">
+        <div class="main-inner">
+          <div class="content-wrap">
+            <div class="content">
+              <slot />
+            </div>
+          </div>
+
+          <aside class="sidebar">
+            <div class="sidebar-inner">
+              <section class="site-overview-wrap">
+                <div class="site-overview">
+                  <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                    <img class="site-author-image" itemprop="image" src="/images/avatar.jpeg" alt={SITE.author} />
+                    <p class="site-author-name" itemprop="name">{SITE.author}</p>
+                    <div class="site-description" itemprop="description">{SITE.description}</div>
+                  </div>
+                  <nav class="site-state motion-element">
+                    <div class="site-state-item site-state-posts">
+                      <a href="/archives/">
+                        <span class="site-state-item-count">{allPosts.length}</span>
+                        <span class="site-state-item-name">日志</span>
+                      </a>
+                    </div>
+                    <div class="site-state-item site-state-categories">
+                      <a href="/categories/">
+                        <span class="site-state-item-count">{categoryCount}</span>
+                        <span class="site-state-item-name">分类</span>
+                      </a>
+                    </div>
+                    <div class="site-state-item site-state-tags">
+                      <a href="/tags/">
+                        <span class="site-state-item-count">{tagCount}</span>
+                        <span class="site-state-item-name">标签</span>
+                      </a>
+                    </div>
+                  </nav>
+                </div>
+              </section>
+            </div>
+          </aside>
+        </div>
+      </main>
+    </div>
+
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", () => {
+        const nav = document.querySelector(".site-nav");
+        document.querySelector(".site-nav-toggle")?.addEventListener("click", () => {
+          nav?.classList.toggle("site-nav-on");
+        });
+
+        const popup = document.querySelector(".search-popup");
+        const overlay = document.querySelector(".search-pop-overlay");
+        const input = document.querySelector(".search-input");
+        const result = document.querySelector("#search-result");
+        let searchEntries = null;
+
+        const escapeHtml = (value) =>
+          value.replace(/[&<>"']/g, (char) => ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;",
+          })[char]);
+
+        const loadSearchEntries = async () => {
+          if (searchEntries) return searchEntries;
+
+          const response = await fetch("/search.xml");
+          const xml = new DOMParser().parseFromString(await response.text(), "application/xml");
+          searchEntries = [...xml.querySelectorAll("entry")].map((entry) => ({
+            title: entry.querySelector("title")?.textContent || "",
+            url: entry.querySelector("url")?.textContent || "",
+            content: (entry.querySelector("content")?.textContent || "")
+              .replace(/<[^>]+>/g, " ")
+              .replace(/\s+/g, " ")
+              .trim(),
+          }));
+
+          return searchEntries;
+        };
+
+        const renderSearch = async () => {
+          if (!result || !input) return;
+
+          const query = input.value.trim().toLowerCase();
+          if (!query) {
+            result.innerHTML = '<div id="no-result">请输入关键词</div>';
+            return;
+          }
+
+          const entries = await loadSearchEntries();
+          const hits = entries
+            .filter((entry) => `${entry.title} ${entry.content}`.toLowerCase().includes(query))
+            .slice(0, 10);
+
+          if (hits.length === 0) {
+            result.innerHTML = '<div id="no-result">没有找到结果</div>';
+            return;
+          }
+
+          result.innerHTML = `<ul class="search-result-list">${hits
+            .map((entry) => {
+              const preview = entry.content.slice(0, 120);
+              return `<li><p class="search-result"><a class="search-result-title" href="${entry.url}">${escapeHtml(entry.title)}</a><br><span>${escapeHtml(preview)}</span></p></li>`;
+            })
+            .join("")}</ul>`;
+        };
+
+        const close = () => {
+          popup?.classList.remove("show");
+          overlay?.classList.remove("search-active");
+        };
+        const open = () => {
+          popup?.classList.add("show");
+          overlay?.classList.add("search-active");
+          if (result && !input?.value) result.innerHTML = '<div id="no-result">请输入关键词</div>';
+          input?.focus();
+        };
+
+        document.querySelectorAll(".popup-trigger").forEach((node) => {
+          node.addEventListener("click", open);
+        });
+        document.querySelector(".popup-btn-close")?.addEventListener("click", close);
+        overlay?.addEventListener("click", close);
+        input?.addEventListener("input", renderSearch);
+      });
+    </script>
+
+    <style is:global>
+      .menu-button,
+      .site-nav-toggle,
+      .popup-trigger,
+      .popup-btn-close {
+        background: transparent;
+        border: 0;
+        color: inherit;
+        cursor: pointer;
+        font: inherit;
+        padding: 0;
+      }
+
+      .use-motion .brand,
+      .use-motion .menu-item,
+      .sidebar-inner,
+      .use-motion .post-block,
+      .use-motion .pagination,
+      .use-motion .comments,
+      .use-motion .post-header,
+      .use-motion .post-body,
+      .use-motion .collection-header {
+        opacity: initial;
+      }
+
+      .use-motion .site-title,
+      .use-motion .site-subtitle {
+        opacity: initial;
+        top: initial;
+      }
+
+      .use-motion .logo-line-before i {
+        left: initial;
+      }
+
+      .use-motion .logo-line-after i {
+        right: initial;
+      }
+
+      .post-body .headerlink {
+        display: none;
+      }
+
+      .post-body {
+        overflow-wrap: break-word;
+      }
+
+      .post-body figure.highlight {
+        box-sizing: border-box;
+        max-width: 100%;
+        overflow-x: auto;
+      }
+
+      .post-body figure.highlight table {
+        min-width: 100%;
+        width: max-content;
+      }
+
+      .search-popup.show,
+      .search-pop-overlay.search-active {
+        display: block;
+      }
+
+      .collection-title,
+      .taxonomy-list,
+      .archive-list {
+        margin: 0 0 30px;
+      }
+
+      .taxonomy-list a,
+      .archive-list a {
+        border-bottom: 1px solid #999;
+        color: #555;
+      }
+
+      .taxonomy-list .count,
+      .archive-list .count {
+        color: #999;
+        font-size: 0.85em;
+        margin-left: 6px;
+      }
+
+      .post-more-link {
+        border-bottom: 1px solid #999;
+        color: #555;
+      }
+
+      .post-eof {
+        background: #ccc;
+        height: 1px;
+        margin: 80px auto 60px;
+        width: 8%;
+      }
+    </style>
+  </body>
+</html>

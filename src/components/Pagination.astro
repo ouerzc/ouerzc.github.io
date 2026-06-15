@@ -1,0 +1,34 @@
+---
+interface Props {
+  currentPage: number;
+  totalPages: number;
+  baseRoute: string;
+}
+
+const { currentPage, totalPages, baseRoute } = Astro.props;
+const hrefFor = (page: number) => (page === 1 ? baseRoute : `${baseRoute}page/${page}/`);
+---
+
+{
+  totalPages > 1 && (
+    <nav class="pagination" aria-label="分页">
+      {currentPage > 1 && (
+        <a class="extend prev" rel="prev" href={hrefFor(currentPage - 1)}>
+          <i class="fa fa-angle-left"></i>
+        </a>
+      )}
+      {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) =>
+        page === currentPage ? (
+          <span class="page-number current">{page}</span>
+        ) : (
+          <a class="page-number" href={hrefFor(page)}>{page}</a>
+        ),
+      )}
+      {currentPage < totalPages && (
+        <a class="extend next" rel="next" href={hrefFor(currentPage + 1)}>
+          <i class="fa fa-angle-right"></i>
+        </a>
+      )}
+    </nav>
+  )
+}

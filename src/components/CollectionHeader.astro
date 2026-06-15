@@ -1,0 +1,15 @@
+---
+interface Props {
+  title: string;
+  count?: number;
+}
+
+const { title, count } = Astro.props;
+---
+
+<header class="collection-header">
+  <h1 class="collection-title">
+    {title}
+    {typeof count === "number" && <small>({count})</small>}
+  </h1>
+</header>

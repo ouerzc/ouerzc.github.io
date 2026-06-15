@@ -1,0 +1,41 @@
+---
+import { formatDate, slugifyTaxonomy, type BlogPost } from "../lib/posts";
+
+interface Props {
+  post: BlogPost;
+}
+
+const { post } = Astro.props;
+---
+
+<div class="post-meta">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span>
+    <span class="post-meta-item-text">发表于</span>
+    <time title="创建时间" datetime={post.data.published.toISOString()}>
+      {formatDate(post.data.published)}
+    </time>
+  </span>
+  {
+    post.data.categories.map((category) => (
+      <span class="post-meta-item">
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span>
+        <a href={`/categories/${slugifyTaxonomy(category)}/`} rel="category">
+          {category}
+        </a>
+      </span>
+    ))
+  }
+  {
+    post.data.tags.map((tag) => (
+      <span class="post-meta-item">
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-icon"><i class="fa fa-tag"></i></span>
+        <a href={`/tags/${slugifyTaxonomy(tag)}/`} rel="tag">
+          {tag}
+        </a>
+      </span>
+    ))
+  }
+</div>

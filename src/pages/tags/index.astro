@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CollectionHeader from "../../components/CollectionHeader.astro";
+import { getAllPosts, taxonomyCounts } from "../../lib/posts";
+
+const tags = taxonomyCounts(await getAllPosts(), "tags");
+---
+
+<BaseLayout title="标签">
+  <CollectionHeader title="标签" count={tags.length} />
+  <ul class="taxonomy-list">
+    {
+      tags.map((tag) => (
+        <li>
+          <a href={`/tags/${tag.slug}/`}>{tag.name}</a>
+          <span class="count">{tag.count}</span>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>

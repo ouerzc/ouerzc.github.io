@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import CollectionHeader from "../../../components/CollectionHeader.astro";
+import Pagination from "../../../components/Pagination.astro";
+import PostList from "../../../components/PostList.astro";
+import {
+  getAllPosts,
+  paginate,
+  postsForTaxonomy,
+  taxonomyCounts,
+} from "../../../lib/posts";
+
+export async function getStaticPaths() {
+  const posts = await getAllPosts();
+  return taxonomyCounts(posts, "tags").map((tag) => {
+    const tagPosts = postsForTaxonomy(posts, "tags", tag.slug);
+    const page = paginate(tagPosts)[0];
+    return {
+      params: { tag: tag.slug },
+      props: { ...page, name: tag.name, slug: tag.slug, count: tag.count },
+    };
+  });
+}
+
+const page = Astro.props;
+---
+
+<BaseLayout title={`标签：${page.name}`}>
+  <CollectionHeader title={`标签：${page.name}`} count={page.count} />
+  <PostList posts={page.items} />
+  <Pagination currentPage={page.page} totalPages={page.totalPages} baseRoute={`/tags/${page.slug}/`} />
+</BaseLayout>

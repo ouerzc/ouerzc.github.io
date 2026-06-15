@@ -1,0 +1,14 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PostList from "../components/PostList.astro";
+import Pagination from "../components/Pagination.astro";
+import { getAllPosts, paginate } from "../lib/posts";
+
+const posts = await getAllPosts();
+const page = paginate(posts)[0];
+---
+
+<BaseLayout>
+  <PostList posts={page.items} />
+  <Pagination currentPage={page.page} totalPages={page.totalPages} baseRoute="/" />
+</BaseLayout>

@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../../../../../layouts/BaseLayout.astro";
+import CollectionHeader from "../../../../../components/CollectionHeader.astro";
+import Pagination from "../../../../../components/Pagination.astro";
+import PostList from "../../../../../components/PostList.astro";
+import {
+  getAllPosts,
+  paginate,
+  postsForTaxonomy,
+  taxonomyCounts,
+} from "../../../../../lib/posts";
+
+export async function getStaticPaths() {
+  const posts = await getAllPosts();
+  return taxonomyCounts(posts, "categories").flatMap((category) => {
+    const categoryPosts = postsForTaxonomy(posts, "categories", category.slug);
+    return paginate(categoryPosts).slice(1).map((page) => ({
+      params: { category: category.slug, page: String(page.page) },
+      props: {
+        ...page,
+        name: category.name,
+        slug: category.slug,
+        count: category.count,
+      },
+    }));
+  });
+}
+
+const page = Astro.props;
+---
+
+<BaseLayout title={`分类：${page.name} - 第 ${page.page} 页`}>
+  <CollectionHeader title={`分类：${page.name}`} count={page.count} />
+  <PostList posts={page.items} />
+  <Pagination currentPage={page.page} totalPages={page.totalPages} baseRoute={`/categories/${page.slug}/`} />
+</BaseLayout>

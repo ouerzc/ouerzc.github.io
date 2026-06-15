@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CollectionHeader from "../../components/CollectionHeader.astro";
+import Pagination from "../../components/Pagination.astro";
+import PostList from "../../components/PostList.astro";
+import { archiveCounts, getAllPosts, paginate } from "../../lib/posts";
+
+const posts = await getAllPosts();
+const page = paginate(posts)[0];
+const archives = archiveCounts(posts);
+---
+
+<BaseLayout title="归档">
+  <CollectionHeader title="归档" count={posts.length} />
+  <ul class="archive-list">
+    {
+      archives.years.map(([year, count]) => (
+        <li>
+          <a href={`/archives/${year}/`}>{year}</a>
+          <span class="count">{count}</span>
+        </li>
+      ))
+    }
+  </ul>
+  <PostList posts={page.items} />
+  <Pagination currentPage={page.page} totalPages={page.totalPages} baseRoute="/archives/" />
+</BaseLayout>

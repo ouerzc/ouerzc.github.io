@@ -1,0 +1,29 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import CollectionHeader from "../../../components/CollectionHeader.astro";
+import Pagination from "../../../components/Pagination.astro";
+import PostList from "../../../components/PostList.astro";
+import {
+  archiveCounts,
+  getAllPosts,
+  paginate,
+  postsForArchive,
+} from "../../../lib/posts";
+
+export async function getStaticPaths() {
+  const posts = await getAllPosts();
+  return archiveCounts(posts).years.map(([year, count]) => {
+    const archivePosts = postsForArchive(posts, year);
+    const page = paginate(archivePosts)[0];
+    return { params: { year }, props: { ...page, year, count } };
+  });
+}
+
+const page = Astro.props;
+---
+
+<BaseLayout title={`归档：${page.year}`}>
+  <CollectionHeader title={`归档：${page.year}`} count={page.count} />
+  <PostList posts={page.items} />
+  <Pagination currentPage={page.page} totalPages={page.totalPages} baseRoute={`/archives/${page.year}/`} />
+</BaseLayout>
